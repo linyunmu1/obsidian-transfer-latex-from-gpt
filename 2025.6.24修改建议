@@ -1,0 +1,20 @@
+//2025.6.24试了几个国内ai，输出基本都是$ ... $格式，但是前后存在空格，导致ob无法正确渲染；
+//解决办法：$ ... $ 去掉前后空格后能正确渲染。
+
+//在main.js文件中，更改以下函数：
+/*
+convertLatexSyntax(content) {
+    const inlineRegex = /\\\(\s*(.*?)\s*\\\)/gs;
+    let updatedContent = content.replace(inlineRegex, (match, formula) => `$${formula.trim()}$`);
+    const blockRegex = /\\\[\s*(.*?)\s*\\\]/gs;
+    updatedContent = updatedContent.replace(blockRegex, (match, formula) => `$$${formula.trim()}$$`);
+    return updatedContent;
+  }
+*/
+
+ // 替换函数：将 $ ... $ 替换为 $ ... $(去掉前后空格)
+ convertLatexSyntax(content) {
+    const inlineRegex = /\$\s*(.*?)\s*\$/gs;
+    let updatedContent = content.replace(inlineRegex, (match, formula) => `$${formula.trim()}$`);
+    return updatedContent;
+  }
